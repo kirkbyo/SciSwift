@@ -27,15 +27,30 @@ public struct InternationalSystem {
             self.label = label
         }
     }
+    
+    public final class Mass: UnitGroup {
+        public let label: String
+        public let magnitude: Double
+        
+        fileprivate init(label: String, magnitude: Double) {
+            self.magnitude = magnitude
+            self.label = label
+        }
+    }
 }
 
 // MARK: - Unit Definitions
 // Distances
-let cm = InternationalSystem.Distance(label: "cm", magnitude: 0.1)
+let cm = InternationalSystem.Distance(label: "cm", magnitude: 1e2)
 let m = InternationalSystem.Distance(label: "m", magnitude: 1)
-let km = InternationalSystem.Distance(label: "km", magnitude: 1000)
+let km = InternationalSystem.Distance(label: "km", magnitude: 1e-3)
 
 // Time
-let ms = InternationalSystem.Time(label: "ms", magnitude: 1e-3)
+let ms = InternationalSystem.Time(label: "ms", magnitude: 1e3)
 let s = InternationalSystem.Time(label: "s", magnitude: 1)
-let hour = InternationalSystem.Time(label: "h", magnitude: 60)
+let hour = InternationalSystem.Time(label: "h", magnitude: 1/60)
+
+// Mass
+let g = InternationalSystem.Time(label: "g", magnitude: 1e3)
+let kg = InternationalSystem.Time(label: "kg", magnitude: 1)
+let tonne = InternationalSystem.Time(label: "tonne", magnitude: 1e-3)
