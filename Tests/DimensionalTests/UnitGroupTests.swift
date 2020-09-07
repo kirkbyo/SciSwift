@@ -18,10 +18,20 @@ final class SomeUnitGroup: UnitGroup {
     }
 }
 
+final class SomeOtherUnitGroup: UnitGroup {
+    let label: String
+    let magnitude: Double
+
+    fileprivate init(label: String, magnitude: Double) {
+        self.magnitude = magnitude
+        self.label = label
+    }
+}
+
 let SomeUnit = SomeUnitGroup(label: "SomeUnit", magnitude: 1.0)
+let SomeOtherUnit = SomeOtherUnitGroup(label: "SomeOtherUnit", magnitude: 1.0)
 
 final class UnitTests: XCTestCase {
-    
     func testEquality() {
         XCTAssertEqual(SomeUnit, SomeUnit)
     }

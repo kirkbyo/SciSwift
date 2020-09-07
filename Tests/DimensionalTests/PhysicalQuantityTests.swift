@@ -2,7 +2,7 @@
 //  PhysicalQuantityTests.swift
 //  
 //
-//  Created by Ozzie Kirkby on 2020-01-10.
+//  Created by Ozzie Kirkby on 2020-01-05.
 //
 
 import XCTest
@@ -51,6 +51,14 @@ final class PhysicalQuantityTests: XCTestCase {
         let difference = lhs - rhs
         XCTAssertEqual(difference.magnitude, 5)
         XCTAssertEqual(difference.unit, SomeUnit)
+    }
+    
+    func testSubstractionOperation2() {
+        let lhs = 8 [SomeUnit^Digit.one]
+        let rhs = 3 [SomeUnit^Digit.one]
+        let difference = lhs - rhs
+        XCTAssertEqual(difference.magnitude, 5)
+        XCTAssertEqual(difference.unit, UnitOperation.exponent(base: SomeUnit, exponent: Digit.one))
     }
     
     static var allTests = [
