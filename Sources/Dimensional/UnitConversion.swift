@@ -34,3 +34,10 @@ public extension UnitGroup {
         return magnitude
     }
 }
+
+public extension PhysicalQuantity {
+    subscript(_ destinationUnit: Unit) -> PhysicalQuantity<Unit> {
+        let conversionRatio = destinationUnit.conversionFactor / self.unit.conversionFactor
+        return PhysicalQuantity(unit: destinationUnit, magnitude: self.magnitude * conversionRatio)
+    }
+}

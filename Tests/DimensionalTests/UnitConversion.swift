@@ -43,10 +43,25 @@ final class UnitConversionTests: XCTestCase {
         XCTAssertEqual(result.unit.description, "m/s^2")
     }
     
+    func testConvenienceUnitConverter() {
+        let subject = 1 [m]
+        let result = subject [cm]
+        XCTAssertEqual(result.magnitude, 100)
+        XCTAssertEqual(result.unit.description, "cm")
+    }
+    
+    func testConvenienceUnitConverterInline() {
+        let subject = 1 [m] [cm]
+        XCTAssertEqual(subject.magnitude, 100)
+        XCTAssertEqual(subject.unit.description, "cm")
+    }
+    
     static var allTests = [
         ("testBasicUnitConversion", testBasicUnitConversion),
         ("testDerivedQuotientUnitConversion", testDerivedQuotientUnitConversion),
         ("testDerivedProductUnitConversion", testDerivedProductUnitConversion),
         ("testDerivedExponentUnitConversion", testDerivedExponentUnitConversion),
+        ("testConvenienceUnitConverter", testConvenienceUnitConverter),
+        ("testConvenienceUnitConverterInline", testConvenienceUnitConverterInline)
     ]
 }
