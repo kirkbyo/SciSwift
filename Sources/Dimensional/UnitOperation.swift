@@ -7,33 +7,49 @@
 
 import Foundation
 
-public protocol OperableUnit: Equatable {}
+public protocol OperableUnit: Equatable {
+    var description: String { get }
+}
 
-public indirect enum UnitOperation<A: OperableUnit, B: OperableUnit>: OperableUnit, Equatable, CustomStringConvertible {
-    case mulitplication(A, B)
-    case division(A, B)
-    case exponent(A, Int)
-    
-    public var description: String {
-        switch self {
-        case let .division(lhs, rhs):
+public struct UnitOperation {}
+
+extension UnitOperation {
+    public struct division<A: OperableUnit, B: OperableUnit>: OperableUnit {
+        let lhs: A
+        let rhs: B
+        
+        public var description: String {
             return "\(lhs) / \(rhs)"
-        case let .exponent(lhs, rhs):
-            return "\(lhs) ^ \(rhs)"
-        case let .mulitplication(lhs, rhs):
+        }
+    }
+    
+    public struct mulitplication<A: OperableUnit, B: OperableUnit>: OperableUnit {
+        let lhs: A
+        let rhs: B
+        
+        public var description: String {
             return "\(lhs) * \(rhs)"
+        }
+    }
+    
+    public struct exponent<A: OperableUnit, B: DigitType>: OperableUnit {
+        let base: A
+        let exponent: B
+        
+        public var description: String {
+            return "\(base)^\(exponent)"
         }
     }
 }
 
-public func * <A: OperableUnit, B: OperableUnit>(lhs: A, rhs: B) -> UnitOperation<A, B> {
-    return .mulitplication(lhs, rhs)
+public func * <A: OperableUnit, B: OperableUnit>(lhs: A, rhs: B) -> UnitOperation.mulitplication<A, B> {
+    return UnitOperation.mulitplication(lhs: lhs, rhs: rhs)
 }
 
-public func / <A: OperableUnit, B: OperableUnit>(lhs: A, rhs: B) -> UnitOperation<A, B> {
-    return .division(lhs, rhs)
+public func / <A: OperableUnit, B: OperableUnit>(lhs: A, rhs: B) -> UnitOperation.division<A, B> {
+    return UnitOperation.division(lhs: lhs, rhs: rhs)
 }
 
-public func ^ <T: OperableUnit>(lhs: T, rhs: Int) -> UnitOperation<T, T> {
-    return .exponent(lhs, rhs)
+public func ^ <A: OperableUnit, B: DigitType>(lhs: A, rhs: B) -> UnitOperation.exponent<A, B> {
+    return UnitOperation.exponent(base: lhs, exponent: rhs)
 }

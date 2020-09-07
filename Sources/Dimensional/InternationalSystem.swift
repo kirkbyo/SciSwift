@@ -51,6 +51,6 @@ let s = InternationalSystem.Time(label: "s", magnitude: 1)
 let hour = InternationalSystem.Time(label: "h", magnitude: 1/60)
 
 // Mass
-let g = InternationalSystem.Time(label: "g", magnitude: 1e3)
-let kg = InternationalSystem.Time(label: "kg", magnitude: 1)
-let tonne = InternationalSystem.Time(label: "tonne", magnitude: 1e-3)
+let g = InternationalSystem.Mass(label: "g", magnitude: 1e3)
+let kg = InternationalSystem.Mass(label: "kg", magnitude: 1)
+let tonne = InternationalSystem.Mass(label: "tonne", magnitude: 1e-3)

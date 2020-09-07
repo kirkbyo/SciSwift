@@ -9,8 +9,8 @@ import Foundation
 
 /// Property of a material or system that can be quantified by measurement. It can be expressed as the combination of a magnitude and a unit.
 /// [Source]( https://en.wikipedia.org/wiki/Physical_quantity)
-public struct PhysicalQuantity<U: UnitGroup>: CustomStringConvertible {
-    public let unit: U
+public struct PhysicalQuantity<A: OperableUnit>: CustomStringConvertible, Equatable {
+    public let unit: A
     public let magnitude: Double
     
     public var description: String {
@@ -18,27 +18,31 @@ public struct PhysicalQuantity<U: UnitGroup>: CustomStringConvertible {
     }
 }
 
+public func ==<A: OperableUnit, B: OperableUnit>(_ lhs: PhysicalQuantity<A>, _ rhs: PhysicalQuantity<B>) -> Bool {
+    return lhs.unit.description == rhs.unit.description && lhs.magnitude == rhs.magnitude
+}
+
 // MARK: Convenience Initializers
 public extension Double {
-    subscript<T: UnitGroup>(_ unit: T) -> PhysicalQuantity<T> {
-        return PhysicalQuantity(unit: unit, magnitude: self)
+    subscript<A: OperableUnit>(_ operation: A) -> PhysicalQuantity<A> {
+        return PhysicalQuantity(unit: operation, magnitude: self)
     }
 }
 
+
 // MARK: - Opperations
-public func +<T: UnitGroup>(_ lhs: PhysicalQuantity<T>, rhs: PhysicalQuantity<T>) -> PhysicalQuantity<T> {
+public func +<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
     return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude + rhs.magnitude))
 }
 
-public func /<T: UnitGroup>(_ lhs: PhysicalQuantity<T>, rhs: PhysicalQuantity<T>) -> PhysicalQuantity<T> {
+public func /<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
     return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude / rhs.magnitude))
 }
 
-public func *<T: UnitGroup>(_ lhs: PhysicalQuantity<T>, rhs: PhysicalQuantity<T>) -> PhysicalQuantity<T> {
+public func *<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
     return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude * rhs.magnitude))
 }
 
-public func -<T: UnitGroup>(_ lhs: PhysicalQuantity<T>, rhs: PhysicalQuantity<T>) -> PhysicalQuantity<T> {
+public func -<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
     return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude - rhs.magnitude))
 }
-

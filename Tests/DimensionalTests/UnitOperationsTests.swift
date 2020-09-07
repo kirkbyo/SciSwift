@@ -10,61 +10,36 @@ import XCTest
 
 final class UnitOperationsTests: XCTestCase {
     // MARK: - General
-    func testMultiplicationDescription() {
-        let multiplication: UnitOperation = SomeUnit * SomeUnit
+    func testMultiplicationDescriptionSameUnits() {
+        let multiplication = SomeUnit * SomeUnit
         XCTAssertEqual(multiplication.description, "\(SomeUnit) * \(SomeUnit)")
     }
     
-    func testDivisonDescription() {
-        let divison: UnitOperation = SomeUnit / SomeUnit
+    func testMultiplicationDescriptionDifferentUnits() {
+        let multiplication = SomeUnit * SomeOtherUnit
+        XCTAssertEqual(multiplication.description, "\(SomeUnit) * \(SomeOtherUnit)")
+    }
+    
+    func testDivisonDescriptionSameUnits() {
+        let divison = SomeUnit / SomeUnit
         XCTAssertEqual(divison.description, "\(SomeUnit) / \(SomeUnit)")
     }
     
+    func testDivisonDescriptionDifferentUnits() {
+        let divison = SomeUnit / SomeOtherUnit
+        XCTAssertEqual(divison.description, "\(SomeUnit) / \(SomeOtherUnit)")
+    }
+    
     func testExponentDescription() {
-        let exponent: UnitOperation = SomeUnit ^ 2
-        XCTAssertEqual(exponent.description, "\(SomeUnit) ^ 2")
+        let exponent = SomeUnit ^ Digit.two
+        XCTAssertEqual(exponent.description, "\(SomeUnit)^2")
     }
-    
-    // MARK: - Operators Tests
-    func testMultiplicationOperatorSameType() {
-        let subject: UnitOperation = SomeUnit * SomeUnit
-        
-        XCTAssert(subject ~= .mulitplication(SomeUnit, SomeUnit))
-    }
-    
-    func testMultiplicationOperatorDifferentType() {
-        let subject: UnitOperation = SomeUnit * SomeOtherUnit
-        
-        XCTAssert(subject ~= .mulitplication(SomeUnit, SomeOtherUnit))
-    }
-    
-    func testDivisonOperatorSameType() {
-        let subject: UnitOperation = SomeUnit / SomeUnit
-        
-        XCTAssert(subject ~= .division(SomeUnit, SomeUnit))
-    }
-    
-    func testDivisonOperatorDifferentType() {
-        let subject: UnitOperation = SomeUnit / SomeOtherUnit
-        
-        XCTAssert(subject ~= .division(SomeUnit, SomeOtherUnit))
-    }
-    
-    func testExponentOperator() {
-        let subject: UnitOperation = SomeUnit ^ 2
-        
-        XCTAssert(subject ~= .exponent(SomeUnit, 2))
-    }
-    
 
     static var allTests = [
-        ("testMultiplicationOperatorSameType", testMultiplicationOperatorSameType),
-        ("testMultiplicationOperatorDifferentType", testMultiplicationOperatorDifferentType),
-        ("testDivisonOperatorSameType", testDivisonOperatorSameType),
-        ("testDivisonOperatorDifferentType", testDivisonOperatorDifferentType),
-        ("testExponentOperator", testExponentOperator),
-        ("testMultiplicationDescription", testMultiplicationDescription),
-        ("testDivisonDescription", testDivisonDescription),
+        ("testMultiplicationDescriptionSameUnits", testMultiplicationDescriptionSameUnits),
+        ("testMultiplicationDescriptionDifferentUnits", testMultiplicationDescriptionDifferentUnits),
+        ("testDivisonDescriptionSameUnits", testDivisonDescriptionSameUnits),
+        ("testDivisonDescriptionDifferentUnits", testDivisonDescriptionDifferentUnits),
         ("testExponentDescription", testExponentDescription),
     ]
 }
