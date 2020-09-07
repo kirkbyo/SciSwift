@@ -9,7 +9,6 @@ import XCTest
 @testable import Dimensional
 
 final class PhysicalQuantityTests: XCTestCase {
-    
     func testNumberWithUnitInitialization() {
         let subject = 10 [SomeUnit]
         XCTAssertEqual(subject.unit, SomeUnit)
@@ -29,6 +28,14 @@ final class PhysicalQuantityTests: XCTestCase {
         XCTAssertEqual(product.unit, SomeUnit)
     }
     
+    func testMuplicationOperationWithConversion() {
+        let lhs = 5 [SomeUnit]
+        let rhs = 5 [SomeUnitWithGreaterMagnitude]
+        let product = lhs * rhs
+        XCTAssertEqual(product.magnitude, 0.25)
+        XCTAssertEqual(product.unit, SomeUnit)
+    }
+    
     func testDivisionOperation() {
         let lhs = 30 [SomeUnit]
         let rhs = 5 [SomeUnit]
@@ -37,9 +44,25 @@ final class PhysicalQuantityTests: XCTestCase {
         XCTAssertEqual(quotient.unit, SomeUnit)
     }
     
+    func testDivisionOperationWithConversion() {
+        let lhs = 10 [SomeUnit]
+        let rhs = 5 [SomeUnitWithGreaterMagnitude]
+        let quotient = lhs / rhs
+        XCTAssertEqual(quotient.magnitude, 200)
+        XCTAssertEqual(quotient.unit, SomeUnit)
+    }
+    
     func testAdditionOperation() {
         let lhs = 3 [SomeUnit]
         let rhs = 2 [SomeUnit]
+        let sum = lhs + rhs
+        XCTAssertEqual(sum.magnitude, 5)
+        XCTAssertEqual(sum.unit, SomeUnit)
+    }
+    
+    func testAdditionOperationWithConversion() {
+        let lhs = 4.98 [SomeUnit]
+        let rhs = 2 [SomeUnitWithGreaterMagnitude]
         let sum = lhs + rhs
         XCTAssertEqual(sum.magnitude, 5)
         XCTAssertEqual(sum.unit, SomeUnit)
@@ -53,19 +76,24 @@ final class PhysicalQuantityTests: XCTestCase {
         XCTAssertEqual(difference.unit, SomeUnit)
     }
     
-    func testSubstractionOperation2() {
-        let lhs = 8 [SomeUnit^Digit.one]
-        let rhs = 3 [SomeUnit^Digit.one]
+    func testSubstractionOperationWithConversion() {
+        let lhs = 5.02 [SomeUnit]
+        let rhs = 2 [SomeUnitWithGreaterMagnitude]
         let difference = lhs - rhs
         XCTAssertEqual(difference.magnitude, 5)
-        XCTAssertEqual(difference.unit, UnitOperation.exponent(base: SomeUnit, exponent: Digit.one))
+        XCTAssertEqual(difference.unit, SomeUnit)
     }
     
     static var allTests = [
         ("testNumberWithUnitInitialization", testNumberWithUnitInitialization),
         ("testStringRepresentable", testStringRepresentable),
         ("testMuplicationOperation", testMuplicationOperation),
+        ("testMuplicationOperationWithConversion", testMuplicationOperationWithConversion),
         ("testDivisionOperation", testDivisionOperation),
+        ("testDivisionOperationWithConversion", testDivisionOperationWithConversion),
         ("testAdditionOperation", testAdditionOperation),
+        ("testAdditionOperationWithConversion", testAdditionOperationWithConversion),
+        ("testSubstractionOperation", testSubstractionOperation),
+        ("testSubstractionOperationWithConversion", testSubstractionOperationWithConversion)
     ]
 }
