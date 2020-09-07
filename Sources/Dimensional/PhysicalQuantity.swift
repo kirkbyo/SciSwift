@@ -29,20 +29,23 @@ public extension Double {
     }
 }
 
-
 // MARK: - Opperations
 public func +<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
-    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude + rhs.magnitude))
+    let conversionRatio = lhs.unit.conversionFactor / rhs.unit.conversionFactor
+    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude + (rhs.magnitude * conversionRatio)))
 }
 
 public func /<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
-    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude / rhs.magnitude))
+    let conversionRatio = lhs.unit.conversionFactor / rhs.unit.conversionFactor
+    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude / (rhs.magnitude * conversionRatio)))
 }
 
 public func *<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
-    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude * rhs.magnitude))
+    let conversionRatio = lhs.unit.conversionFactor / rhs.unit.conversionFactor
+    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude * (rhs.magnitude * conversionRatio)))
 }
 
 public func -<A: OperableUnit>(_ lhs: PhysicalQuantity<A>, rhs: PhysicalQuantity<A>) -> PhysicalQuantity<A> {
-    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude - rhs.magnitude))
+    let conversionRatio = lhs.unit.conversionFactor / rhs.unit.conversionFactor
+    return PhysicalQuantity(unit: lhs.unit, magnitude: (lhs.magnitude - (rhs.magnitude * conversionRatio)))
 }

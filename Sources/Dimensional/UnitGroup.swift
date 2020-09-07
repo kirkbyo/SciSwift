@@ -7,9 +7,10 @@
 
 import Foundation
 
-public protocol UnitGroup: class, CustomStringConvertible, OperableUnit {
+public protocol UnitGroup: class, OperableUnit {
     var description: String { get }
     var label: String { get }
+    var magnitude: Double { get }
 }
 
 public extension UnitGroup {

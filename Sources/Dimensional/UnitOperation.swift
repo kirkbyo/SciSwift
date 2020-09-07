@@ -7,19 +7,17 @@
 
 import Foundation
 
-public protocol OperableUnit: Equatable {
+public protocol OperableUnit: Equatable, CustomStringConvertible, UnitConversion {
     var description: String { get }
 }
 
-public struct UnitOperation {}
-
-extension UnitOperation {
+public struct UnitOperation {
     public struct division<A: OperableUnit, B: OperableUnit>: OperableUnit {
         let lhs: A
         let rhs: B
         
         public var description: String {
-            return "\(lhs) / \(rhs)"
+            return "\(lhs)/\(rhs)"
         }
     }
     
@@ -28,7 +26,7 @@ extension UnitOperation {
         let rhs: B
         
         public var description: String {
-            return "\(lhs) * \(rhs)"
+            return "\(lhs) \(rhs)"
         }
     }
     
