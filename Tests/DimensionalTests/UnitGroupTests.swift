@@ -32,7 +32,6 @@ let SomeUnit = SomeUnitGroup(label: "SomeUnit", magnitude: 1.0)
 let SomeOtherUnit = SomeOtherUnitGroup(label: "SomeOtherUnit", magnitude: 1.0)
 
 final class UnitTests: XCTestCase {
-    
     func testEquality() {
         XCTAssertEqual(SomeUnit, SomeUnit)
     }

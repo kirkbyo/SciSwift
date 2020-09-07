@@ -9,8 +9,8 @@ import Foundation
 
 /// Property of a material or system that can be quantified by measurement. It can be expressed as the combination of a magnitude and a unit.
 /// [Source]( https://en.wikipedia.org/wiki/Physical_quantity)
-public struct PhysicalQuantity<A: OperableUnit>: CustomStringConvertible, Equatable {
-    public let unit: A
+public struct PhysicalQuantity<Unit: OperableUnit>: CustomStringConvertible, Equatable {
+    public let unit: Unit
     public let magnitude: Double
     
     public var description: String {
