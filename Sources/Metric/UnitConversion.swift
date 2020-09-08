@@ -11,6 +11,10 @@ public protocol UnitConversion {
     var conversionFactor: Double { get }
 }
 
+public func calculateUnitConversionFactor<A: OperableUnit>(a: A, b: A) -> Double {
+    return a.conversionFactor / b.conversionFactor
+}
+
 public extension UnitOperation.division {
     var conversionFactor: Double {
         return lhs.conversionFactor / rhs.conversionFactor
@@ -32,12 +36,5 @@ public extension UnitOperation.exponent {
 public extension UnitGroup {
     var conversionFactor: Double {
         return magnitude
-    }
-}
-
-public extension Measurement {
-    subscript(_ destinationUnit: Unit) -> Measurement<Unit> {
-        let conversionRatio = destinationUnit.conversionFactor / self.unit.conversionFactor
-        return Measurement(unit: destinationUnit, magnitude: self.magnitude * conversionRatio)
     }
 }

@@ -5,8 +5,6 @@
 //  Created by Ozzie Kirkby on 2020-01-10.
 //
 
-import Foundation
-
 // Base namespace for the International System of Units, typically abbreviated to SI, from
 // the French name Système International d'unités.
 // https://simple.wikipedia.org/wiki/International_System_of_Units
@@ -50,7 +48,7 @@ public struct SI {
     // Time
     public static let ms = SI.time(label: "ms", magnitude: 1e3)
     public static let s = SI.time(label: "s", magnitude: 1)
-    public static let hour = SI.time(label: "h", magnitude: 1/60)
+    public static let h = SI.time(label: "h", magnitude: 1/60)
 
     // Mass
     public static let g = SI.mass(label: "g", magnitude: 1e3)

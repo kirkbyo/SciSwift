@@ -11,28 +11,28 @@ import XCTest
 
 final class MetricGlobalTests: XCTestCase {
     func testUnitsCanBeAccessedAtGlobalScope() {
-        let subjectA = 10.0 [m]
-        let subjectB = 5.0 [m]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.unit, m)
-        XCTAssertEqual(result.magnitude, 5)
+        let subject = m
+        XCTAssertEqual(subject.description, "m")
     }
     
     func testUnitsCanBeComposed() {
-        let subjectA = 10.0 [m/s]
-        let subjectB = 5.0 [m/s]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.unit, (m/s))
-        XCTAssertEqual(result.magnitude, 5)
+        let subject = m/s
+        XCTAssertEqual(subject.description, "m/s")
     }
     
     func testUnitsCanBeComplexComposed() {
-        let subjectA = 10.0 [(kg^Digit.three)/(m^Digit.two)*s]
-        let subjectB = 5.0 [(kg^Digit.three)/(m^Digit.two)*s]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.magnitude, 5)
-        XCTAssertEqual(result.unit.description, "kg^3/m^2 s")
+        let subject = (kg^Digit.three)/(m^Digit.two)*s
+        XCTAssertEqual(subject.description, "kg^3/m^2 s")
     }
+    
+//    func testUnitsCanBeFunctionTypes() {
+//        func circumference(radius: Metric.Measurement<SI.distance>) -> Metric.Measurement<SI.distance> {
+//            return 2 * Double.pi * radius
+//        }
+//
+//        let result = circumference(radius: 1 [m])
+//        XCTAssertEqual(result.unit.description, "m")
+//    }
     
     static var allTests = [
         ("testUnitsCanBeAccessedAtGlobalScope", testUnitsCanBeAccessedAtGlobalScope),

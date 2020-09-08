@@ -14,7 +14,7 @@ public let km = SI.km
 // Time
 public let ms = SI.ms
 public let s = SI.s
-public let hour = SI.hour
+public let h = SI.h
 
 // Mass
 public let g = SI.g

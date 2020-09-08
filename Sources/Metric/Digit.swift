@@ -5,8 +5,6 @@
 //  Created by Ozzie Kirkby on 2020-09-07.
 //
 
-import Foundation
-
 public protocol DigitType: Equatable, CustomStringConvertible {
     var value: Int { get }
 }

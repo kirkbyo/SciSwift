@@ -1,14 +1,14 @@
 //
-//  MeasurementTests.swift
+//  SciValueTests.swift
 //  
 //
 //  Created by Ozzie Kirkby on 2020-01-05.
 //
 
 import XCTest
-@testable import Metric
+@testable import SciSwift
 
-final class MeasurementTests: XCTestCase {
+final class SciValueTests: XCTestCase {
     func testNumberWithUnitInitialization() {
         let subject = 10 [SomeUnit]
         XCTAssertEqual(subject.unit, SomeUnit)
@@ -84,6 +84,39 @@ final class MeasurementTests: XCTestCase {
         XCTAssertEqual(difference.unit, SomeUnit)
     }
     
+    func testConvenienceUnitConverter() {
+        let subject = 1 [SomeUnit]
+        let result = subject [SomeUnitWithGreaterMagnitude]
+        XCTAssertEqual(result.magnitude, 100)
+        XCTAssertEqual(result.unit.description, "SomeUnitWithGreaterMagnitude")
+    }
+
+    func testConvenienceUnitConverterInline() {
+        let subject = 1 [SomeUnit] [SomeUnitWithGreaterMagnitude]
+        XCTAssertEqual(subject.magnitude, 100)
+        XCTAssertEqual(subject.unit.description, "SomeUnitWithGreaterMagnitude")
+    }
+    
+    func testConvenienceScalarMultiplication() {
+        let subjectA = 10 * 1 [SomeUnit]
+        XCTAssertEqual(subjectA.magnitude, 10)
+        XCTAssertEqual(subjectA.unit.description, "SomeUnit")
+        
+        let subjectB = 1 [SomeUnit] * 10
+        XCTAssertEqual(subjectB.magnitude, 10)
+        XCTAssertEqual(subjectB.unit.description, "SomeUnit")
+    }
+    
+    func testConvenienceScalarDivision() {
+        let subjectA = 10 / 1 [SomeUnit]
+        XCTAssertEqual(subjectA.magnitude, 10)
+        XCTAssertEqual(subjectA.unit.description, "SomeUnit")
+        
+        let subjectB = 1 [SomeUnit] / 10
+        XCTAssertEqual(subjectB.magnitude, 0.1)
+        XCTAssertEqual(subjectB.unit.description, "SomeUnit")
+    }
+    
     static var allTests = [
         ("testNumberWithUnitInitialization", testNumberWithUnitInitialization),
         ("testStringRepresentable", testStringRepresentable),
@@ -94,6 +127,10 @@ final class MeasurementTests: XCTestCase {
         ("testAdditionOperation", testAdditionOperation),
         ("testAdditionOperationWithConversion", testAdditionOperationWithConversion),
         ("testSubstractionOperation", testSubstractionOperation),
-        ("testSubstractionOperationWithConversion", testSubstractionOperationWithConversion)
+        ("testSubstractionOperationWithConversion", testSubstractionOperationWithConversion),
+        ("testConvenienceUnitConverter", testConvenienceUnitConverter),
+        ("testConvenienceUnitConverterInline", testConvenienceUnitConverterInline),
+        ("testConvenienceScalarMultiplication", testConvenienceScalarMultiplication),
+        ("testConvenienceScalarDivision", testConvenienceScalarDivision)
     ]
 }

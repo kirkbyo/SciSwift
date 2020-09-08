@@ -5,63 +5,34 @@
 //  Created by Ozzie Kirkby on 2020-09-07.
 //
 
-import Foundation
-
 import XCTest
 @testable import Metric
 
 final class UnitConversionTests: XCTestCase {
     func testBasicUnitConversion() {
-        let subjectA = 10.0 [SI.m]
-        let subjectB = 9 [SI.cm]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.magnitude, 9.91)
-        XCTAssertEqual(result.unit.label, "m")
+        let ratio = calculateUnitConversionFactor(a: SI.m, b: SI.cm)
+        XCTAssertEqual(ratio, 1/100)
     }
-    
+
     func testDerivedQuotientUnitConversion() {
-        let subjectA = 5 [SI.m/SI.s]
-        let subjectB = 5 [SI.cm/SI.ms]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.magnitude, -45)
-        XCTAssertEqual(result.unit.description, "m/s")
+        let ratio = calculateUnitConversionFactor(a: SI.m/SI.s, b: SI.cm/SI.ms)
+        XCTAssertEqual(ratio, (1000/100))
     }
-    
+
     func testDerivedProductUnitConversion() {
-        let subjectA = 5.01 [SI.m*SI.s]
-        let subjectB = 1000 [SI.cm*SI.ms]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.magnitude, 5)
-        XCTAssertEqual(result.unit.description, "m s")
+        let ratio = calculateUnitConversionFactor(a: SI.m*SI.s, b: SI.cm*SI.ms)
+        XCTAssertEqual(ratio, 1/(1000 * 100))
     }
-    
+
     func testDerivedExponentUnitConversion() {
-        let subjectA = 5 [SI.m/(SI.s^Digit.two)]
-        let subjectB = 0.001 [SI.cm/(SI.ms^Digit.two)]
-        let result = subjectA - subjectB
-        XCTAssertEqual(result.magnitude, -5)
-        XCTAssertEqual(result.unit.description, "m/s^2")
+        let ratio = calculateUnitConversionFactor(a: SI.m/(SI.s^Digit.two), b: SI.cm/(SI.ms^Digit.two))
+        XCTAssertEqual(ratio, (1000 * 1000)/(100))
     }
-    
-    func testConvenienceUnitConverter() {
-        let subject = 1 [SI.m]
-        let result = subject [SI.cm]
-        XCTAssertEqual(result.magnitude, 100)
-        XCTAssertEqual(result.unit.description, "cm")
-    }
-    
-    func testConvenienceUnitConverterInline() {
-        let subject = 1 [SI.m] [SI.cm]
-        XCTAssertEqual(subject.magnitude, 100)
-        XCTAssertEqual(subject.unit.description, "cm")
-    }
-    
+
     static var allTests = [
         ("testBasicUnitConversion", testBasicUnitConversion),
         ("testDerivedQuotientUnitConversion", testDerivedQuotientUnitConversion),
         ("testDerivedProductUnitConversion", testDerivedProductUnitConversion),
         ("testDerivedExponentUnitConversion", testDerivedExponentUnitConversion),
-        ("testConvenienceUnitConverter", testConvenienceUnitConverter),
-        ("testConvenienceUnitConverterInline", testConvenienceUnitConverterInline)
     ]
 }
