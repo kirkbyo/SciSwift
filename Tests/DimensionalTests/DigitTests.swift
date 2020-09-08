@@ -1,5 +1,5 @@
 //
-//  DigitTest.swift
+//  DigitTests.swift
 //  
 //
 //  Created by Ozzie Kirkby on 2020-09-07.
