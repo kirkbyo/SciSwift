@@ -1,7 +1,8 @@
 import XCTest
 
-import DimensionalTests
+import MetricTests
 
 var tests = [XCTestCaseEntry]()
-tests += DimensionalTests.allTests()
+tests += MetricTests.allTests()
+tests += MetricGlobalTests.allTests()
 XCTMain(tests)

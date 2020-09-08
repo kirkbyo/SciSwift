@@ -5,8 +5,6 @@
 //  Created by Ozzie Kirkby on 2020-01-10.
 //
 
-import Foundation
-
 public protocol UnitGroup: class, OperableUnit {
     var description: String { get }
     var label: String { get }

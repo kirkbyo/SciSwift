@@ -5,8 +5,6 @@
 //  Created by Ozzie Kirkby on 2020-01-10.
 //
 
-import Foundation
-
 public protocol OperableUnit: Equatable, CustomStringConvertible, UnitConversion {
     var description: String { get }
 }
