@@ -14,7 +14,7 @@ let speed1 = 12 [m/s]
 let speed2 = 18 [km/h]
 print(speed1 - speed2) // 7 [km/h]
 
-func circumference(radius: Measurement<SI.distance>) -> Metric.Measurement<SI.distance> {
+func circumference(radius: SciValue<SI.distance>) -> SciValue<SI.distance> {
     return 2 * Double.pi * radius
 }
 
