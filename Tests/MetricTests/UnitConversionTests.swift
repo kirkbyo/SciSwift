@@ -8,7 +8,7 @@
 import Foundation
 
 import XCTest
-@testable import Dimensional
+@testable import Metric
 
 final class UnitConversionTests: XCTestCase {
     func testBasicUnitConversion() {

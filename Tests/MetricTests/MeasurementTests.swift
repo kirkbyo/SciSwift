@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Dimensional
+@testable import Metric
 
 final class MeasurementTests: XCTestCase {
     func testNumberWithUnitInitialization() {
