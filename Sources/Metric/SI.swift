@@ -40,20 +40,20 @@ public struct SI {
             self.label = label
         }
     }
+    
+    // MARK: - Unit Definitions
+    // Distances
+    public static let cm = SI.distance(label: "cm", magnitude: 1e2)
+    public static let m = SI.distance(label: "m", magnitude: 1)
+    public static let km = SI.distance(label: "km", magnitude: 1e-3)
+
+    // Time
+    public static let ms = SI.time(label: "ms", magnitude: 1e3)
+    public static let s = SI.time(label: "s", magnitude: 1)
+    public static let hour = SI.time(label: "h", magnitude: 1/60)
+
+    // Mass
+    public static let g = SI.mass(label: "g", magnitude: 1e3)
+    public static let kg = SI.mass(label: "kg", magnitude: 1)
+    public static let tonne = SI.mass(label: "tonne", magnitude: 1e-3)
 }
-
-// MARK: - Unit Definitions
-// Distances
-let cm = SI.distance(label: "cm", magnitude: 1e2)
-let m = SI.distance(label: "m", magnitude: 1)
-let km = SI.distance(label: "km", magnitude: 1e-3)
-
-// Time
-let ms = SI.time(label: "ms", magnitude: 1e3)
-let s = SI.time(label: "s", magnitude: 1)
-let hour = SI.time(label: "h", magnitude: 1/60)
-
-// Mass
-let g = SI.mass(label: "g", magnitude: 1e3)
-let kg = SI.mass(label: "kg", magnitude: 1)
-let tonne = SI.mass(label: "tonne", magnitude: 1e-3)

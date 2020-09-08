@@ -10,6 +10,9 @@ let package = Package(
         .library(
             name: "Metric",
             targets: ["Metric"]),
+        .library(
+            name: "MetricGlobal",
+            targets: ["MetricGlobal"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,5 +27,11 @@ let package = Package(
         .testTarget(
             name: "MetricTests",
             dependencies: ["Metric"]),
+        .target(
+            name: "MetricGlobal",
+            dependencies: ["Metric"]),
+        .testTarget(
+            name: "MetricGlobalTests",
+            dependencies: ["MetricGlobal"]),
     ]
 )
