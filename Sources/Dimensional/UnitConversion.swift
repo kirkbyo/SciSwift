@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UnitConversion.swift
 //  
 //
 //  Created by Ozzie Kirkby on 2020-09-07.
@@ -35,9 +35,9 @@ public extension UnitGroup {
     }
 }
 
-public extension PhysicalQuantity {
-    subscript(_ destinationUnit: Unit) -> PhysicalQuantity<Unit> {
+public extension Measurement {
+    subscript(_ destinationUnit: Unit) -> Measurement<Unit> {
         let conversionRatio = destinationUnit.conversionFactor / self.unit.conversionFactor
-        return PhysicalQuantity(unit: destinationUnit, magnitude: self.magnitude * conversionRatio)
+        return Measurement(unit: destinationUnit, magnitude: self.magnitude * conversionRatio)
     }
 }

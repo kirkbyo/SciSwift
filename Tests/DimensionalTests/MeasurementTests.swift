@@ -1,5 +1,5 @@
 //
-//  PhysicalQuantityTests.swift
+//  MeasurementTests.swift
 //  
 //
 //  Created by Ozzie Kirkby on 2020-01-05.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Dimensional
 
-final class PhysicalQuantityTests: XCTestCase {
+final class MeasurementTests: XCTestCase {
     func testNumberWithUnitInitialization() {
         let subject = 10 [SomeUnit]
         XCTAssertEqual(subject.unit, SomeUnit)

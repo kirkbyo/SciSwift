@@ -1,5 +1,5 @@
 //
-//  InternationalSystem.swift
+//  SI.swift
 //  
 //
 //  Created by Ozzie Kirkby on 2020-01-10.
@@ -7,8 +7,11 @@
 
 import Foundation
 
-public struct InternationalSystem {
-    public final class Distance: UnitGroup {
+// Base namespace for the International System of Units, typically abbreviated to SI, from
+// the French name Système International d'unités.
+// https://simple.wikipedia.org/wiki/International_System_of_Units
+public struct SI {
+    public final class distance: UnitGroup {
         public let label: String
         public let magnitude: Double
         
@@ -18,7 +21,7 @@ public struct InternationalSystem {
         }
     }
     
-    public final class Time: UnitGroup {
+    public final class time: UnitGroup {
         public let label: String
         public let magnitude: Double
         
@@ -28,7 +31,7 @@ public struct InternationalSystem {
         }
     }
     
-    public final class Mass: UnitGroup {
+    public final class mass: UnitGroup {
         public let label: String
         public let magnitude: Double
         
@@ -41,16 +44,16 @@ public struct InternationalSystem {
 
 // MARK: - Unit Definitions
 // Distances
-let cm = InternationalSystem.Distance(label: "cm", magnitude: 1e2)
-let m = InternationalSystem.Distance(label: "m", magnitude: 1)
-let km = InternationalSystem.Distance(label: "km", magnitude: 1e-3)
+let cm = SI.distance(label: "cm", magnitude: 1e2)
+let m = SI.distance(label: "m", magnitude: 1)
+let km = SI.distance(label: "km", magnitude: 1e-3)
 
 // Time
-let ms = InternationalSystem.Time(label: "ms", magnitude: 1e3)
-let s = InternationalSystem.Time(label: "s", magnitude: 1)
-let hour = InternationalSystem.Time(label: "h", magnitude: 1/60)
+let ms = SI.time(label: "ms", magnitude: 1e3)
+let s = SI.time(label: "s", magnitude: 1)
+let hour = SI.time(label: "h", magnitude: 1/60)
 
 // Mass
-let g = InternationalSystem.Mass(label: "g", magnitude: 1e3)
-let kg = InternationalSystem.Mass(label: "kg", magnitude: 1)
-let tonne = InternationalSystem.Mass(label: "tonne", magnitude: 1e-3)
+let g = SI.mass(label: "g", magnitude: 1e3)
+let kg = SI.mass(label: "kg", magnitude: 1)
+let tonne = SI.mass(label: "tonne", magnitude: 1e-3)

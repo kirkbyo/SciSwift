@@ -1,5 +1,5 @@
 //
-//  PhysicalQuantityTests.swift
+//  SITests.swift
 //
 //
 //  Created by Ozzie Kirkby on 2020-09-10.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Dimensional
 
-final class InternationalSystemTests: XCTestCase {
+final class SITests: XCTestCase {
     func testUnitsCanBeComposed() {
         let subjectA = 10.0 [m/s]
         let subjectB = 5.0 [m/s]
