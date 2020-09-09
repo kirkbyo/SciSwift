@@ -9,6 +9,9 @@ let package = Package(
         .library(
             name: "SciSwift",
             targets: ["SciSwift"]),
+        .library(
+            name: "SciSwiftGlobal",
+            targets: ["SciSwift", "MetricGlobal"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
